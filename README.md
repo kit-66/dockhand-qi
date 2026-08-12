@@ -69,7 +69,42 @@ git push -u origin main
 
 ---
 
-Примечания:
+6) Скачивание файлов напрямую с GitHub (wget / curl)
+
+Если ваш репозиторий публичный, можно скачать готовый `docker-compose.yml` прямо с raw-ссылки и запустить на сервере:
+
+Пример — скачать и запустить в текущей директории:
+
+```bash
+wget -O docker-compose.yml https://raw.githubusercontent.com/kit-66/dockhand/main/docker-compose.yml
+# или
+curl -fsSL -o docker-compose.yml https://raw.githubusercontent.com/kit-66/dockhand/main/docker-compose.yml
+
+docker compose pull
+docker compose up -d
+```
+
+Однострочная команда для удалённого сервера (через SSH):
+
+```bash
+ssh user@server "mkdir -p /home/user/dockhand && cd /home/user/dockhand && wget -O docker-compose.yml https://raw.githubusercontent.com/kit-66/dockhand/main/docker-compose.yml && docker compose pull && docker compose up -d"
+```
+
+Примечание: замените `main` на фактическую ветку, если она отличается.
+
+Если репозиторий приватный, используйте authenticated curl через GitHub API и токен (задать в переменной окружения):
+
+```bash
+export GITHUB_TOKEN=your_token_here
+curl -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3.raw" -o docker-compose.yml "https://api.github.com/repos/kit-66/dockhand/contents/docker-compose.yml?ref=main"
+```
+
+---
+
+Примечания и безопасность:
 - Проверьте актуальный тег образа в официальном репозитории; возможно, есть специфичный релизный тег.
-- Для управления Docker-контейнерами на сервере Dockhand использует доступ к /var/run/docker.sock — убедитесь, что это безопасно в вашем окружении.
-- При желании добавьте `.env.example` и секцию `environment` в docker-compose.yml для конфиденциальных настроек.
+- Dockhand управляет Docker через доступ к `/var/run/docker.sock`. Доступ к сокету даёт процессам в контейнере привилегии управления Docker и требует осторожности.
+- Перед запуском скачанных файлов всегда просматривайте их содержимое (например, `cat docker-compose.yml`).
+- При необходимости добавьте `.env.example` и секцию `environment` в `docker-compose.yml` для конфиденциальных настроек.
+
+Если нужно — могу также обновить в репозитории файл `docker-compose.yml`, добавить `.env.example`, `deploy.sh` или systemd unit; скажите, что добавить.
