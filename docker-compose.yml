@@ -1,3 +1,18 @@
-docker compose up -d
-# или, при использовании старого клиента:
-# docker-compose up -d
+
+```yaml name=docker-compose.yml
+version: "3.8"
+
+services:
+  dockhand:
+    image: fnsys/dockhand:latest
+    container_name: dockhand
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - dockhand_data:/app/data
+    # При необходимости добавьте environment: с конфигом
+
+volumes:
+  dockhand_data:
