@@ -106,5 +106,3 @@ curl -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.
 - Dockhand управляет Docker через доступ к `/var/run/docker.sock`. Доступ к сокету даёт процессам в контейнере привилегии управления Docker и требует осторожности.
 - Перед запуском скачанных файлов всегда просматривайте их содержимое (например, `cat docker-compose.yml`).
 - При необходимости добавьте `.env.example` и секцию `environment` в `docker-compose.yml` для конфиденциальных настроек.
-
-Если нужно — могу также обновить в репозитории файл `docker-compose.yml`, добавить `.env.example`, `deploy.sh` или systemd unit; скажите, что добавить.
