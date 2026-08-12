@@ -41,7 +41,7 @@ docker compose up -d
 Пример (локально в папке с docker-compose.yml):
 
 ```bash
-scp docker-compose.yml user@server:/home/user/dockhand/docker-compose.yml
+scp docker-compose.yml user@server:/home/user/dockhand-qi/docker-compose.yml
 ssh user@server 'cd /home/user/dockhand && docker compose pull && docker compose up -d'
 ```
 
@@ -50,8 +50,8 @@ ssh user@server 'cd /home/user/dockhand && docker compose pull && docker compose
 4) Однострочная запись файла на сервер и запуск (если нет SCP)
 
 ```bash
-ssh user@server 'mkdir -p /home/user/dockhand && cat > /home/user/dockhand/docker-compose.yml' < docker-compose.yml
-ssh user@server 'cd /home/user/dockhand && docker compose pull && docker compose up -d'
+ssh user@server 'mkdir -p /home/user/dockhand-qi&& cat > /home/user/dockhand-qi/docker-compose.yml' < docker-compose.yml
+ssh user@server 'cd /home/user/dockhand-qi&& docker compose pull && docker compose up -d'
 ```
 
 ---
@@ -63,7 +63,7 @@ git init
 git add README.md docker-compose.yml
 git commit -m "Add Dockhand quick deploy"
 git branch -M main
-git remote add origin git@github.com:kit-66/dockhand.git
+git remote add origin git@github.com:kit-66/dockhand-qi.git
 git push -u origin main
 ```
 
@@ -76,9 +76,9 @@ git push -u origin main
 Пример — скачать и запустить в текущей директории:
 
 ```bash
-wget -O docker-compose.yml https://raw.githubusercontent.com/kit-66/dockhand/main/docker-compose.yml
+wget -O docker-compose.yml https://raw.githubusercontent.com/kit-66/dockhand-qi/main/docker-compose.yml
 # или
-curl -fsSL -o docker-compose.yml https://raw.githubusercontent.com/kit-66/dockhand/main/docker-compose.yml
+curl -fsSL -o docker-compose.yml https://raw.githubusercontent.com/kit-66/dockhand-qi/main/docker-compose.yml
 
 docker compose pull
 docker compose up -d
@@ -87,7 +87,7 @@ docker compose up -d
 Однострочная команда для удалённого сервера (через SSH):
 
 ```bash
-ssh user@server "mkdir -p /home/user/dockhand && cd /home/user/dockhand && wget -O docker-compose.yml https://raw.githubusercontent.com/kit-66/dockhand/main/docker-compose.yml && docker compose pull && docker compose up -d"
+ssh user@server "mkdir -p /home/user/dockhand && cd /home/user/dockhand-qi && wget -O docker-compose.yml https://raw.githubusercontent.com/kit-66/dockhand-qi/main/docker-compose.yml && docker compose pull && docker compose up -d"
 ```
 
 Примечание: замените `main` на фактическую ветку, если она отличается.
@@ -96,7 +96,7 @@ ssh user@server "mkdir -p /home/user/dockhand && cd /home/user/dockhand && wget 
 
 ```bash
 export GITHUB_TOKEN=your_token_here
-curl -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3.raw" -o docker-compose.yml "https://api.github.com/repos/kit-66/dockhand/contents/docker-compose.yml?ref=main"
+curl -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3.raw" -o docker-compose.yml "https://api.github.com/repos/kit-66/dockhand-qi/contents/docker-compose.yml?ref=main"
 ```
 
 ---
