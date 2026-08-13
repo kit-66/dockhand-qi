@@ -27,6 +27,10 @@ docker run -d \
 2) Docker Compose (рекомендуется для сервера)
 
 Создайте файл `docker-compose.yml` (пример ниже) и выполните:
+```bash
+git clone https://github.com/kit-66/dockhand-qi.git && cd dockhand-qi && docker-compose up -d
+```
+или
 
 ```bash
 docker compose up -d
